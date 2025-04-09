@@ -351,7 +351,8 @@
             "skill_level_required": [
                 1,
                 1
-            ]
+            ],
+            "surgery_due_day": 13
         },
         {
             "id": "p03",
@@ -443,7 +444,8 @@
                 0,
                 1,
                 1
-            ]
+            ],
+            "surgery_due_day": 13
         },
         {
             "id": "p07",
@@ -820,7 +822,8 @@
             "skill_level_required": [
                 1,
                 1
-            ]
+            ],
+            "surgery_due_day": 5
         },
         {
             "id": "p22",
@@ -922,7 +925,8 @@
                 0,
                 0,
                 1
-            ]
+            ],
+            "surgery_due_day": 7
         },
         {
             "id": "p26",
@@ -1426,7 +1430,8 @@
                 0,
                 1,
                 0
-            ]
+            ],
+            "surgery_due_day": 11
         },
         {
             "id": "p46",
@@ -1644,7 +1649,8 @@
                 0,
                 1,
                 0
-            ]
+            ],
+            "surgery_due_day": 7
         },
         {
             "id": "p55",
@@ -2460,7 +2466,8 @@
                 1,
                 0,
                 1
-            ]
+            ],
+            "surgery_due_day": 13
         },
         {
             "id": "p88",

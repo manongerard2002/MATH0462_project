@@ -1,0 +1,7 @@
+Objective: 21451
+	S1 (age groups)          430 (   86 x     5)
+	S2 (skill level)         650 (   65 x    10)
+	S3 (continuity)          516 (  516 x     1)
+	S4 (nurse workload)      565 (  565 x     1)
+	S5 (admission delay)   12090 ( 1209 x    10)
+	S6 (unscheduled)        7200 (   36 x   200)

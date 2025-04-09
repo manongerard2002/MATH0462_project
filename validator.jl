@@ -1,6 +1,4 @@
-function biOperation(left::Int, right::Int, op::Function)
-    op(left, right)
-end
+using Printf
 
 function get_violations_scores(instance_path::String, solution_path::String)
     instance = JSON3.read(instance_path)
@@ -96,7 +94,9 @@ function get_violations_scores(instance_path::String, solution_path::String)
             nurse = v_room_nurse[room_index, admission_day+day-1]
             c_room_workload[room_index, admission_day+day-1] += patient_workload[patient_index][day]
             c_nurse_workload[nurse, admission_day+day-1] += patient_workload[patient_index][day]
-            c_room_skill[room_index, admission_day+day-1, patient_skill[patient_index][day]+1] += 1
+            if patient_skill[patient_index][day] != 0
+                c_room_skill[room_index, admission_day+day-1, patient_skill[patient_index][day]] += 1
+            end
             c_room_gender_n[room_index, admission_day+day-1, patient_gender[patient_index]] += 1
             c_room_age_n[room_index, admission_day+day-1, patient_age_group[patient_index]] += 1
             push!(c_patients_present_in_room[room_index, admission_day+day-1], patient_index)
@@ -110,7 +110,9 @@ function get_violations_scores(instance_path::String, solution_path::String)
             nurse = v_room_nurse[room_index, day]
             c_room_workload[room_index, day] += patient_workload[P+o][day]
             c_nurse_workload[nurse, day] += patient_workload[P+o][day]
-            c_room_skill[room_index, day, patient_skill[P+o][day]+1] += 1
+            if patient_skill[P+o][day] != 0
+                c_room_skill[room_index, day, patient_skill[P+o][day]] += 1
+            end
             c_room_age_n[room_index, day, patient_age_group[P+o]] += 1
             push!(c_patients_present_in_room[room_index, day], P+o)
             c_patients_present_in_room_n[room_index, day] += 1
@@ -191,8 +193,14 @@ function get_violations_scores(instance_path::String, solution_path::String)
     s_room_delta_age_total = sum(vec(s_room_delta_age))
     s1 = s_room_delta_age_total * instance["weights"]["room_mixed_age"]
     #S2
-    s_room_skill_unreached = [biOperation(c_room_skill[r, d, k], v_room_nurse[r, d], (n_at_skill, n) -> max((k - nurse_skill_level[n]) * n_at_skill, 0))
-                                for r in 1:R, d in 1:D, k in 1:L]
+    s_room_skill_unreached = [
+        sum(
+            max((k - nurse_skill_level[v_room_nurse[r, d]]) * c_room_skill[r, d, k], 0) 
+        )
+        for r in 1:R, d in 1:D, k in 1:L
+    ]
+
+
     s_room_skill_unreached_total = sum(vec(s_room_skill_unreached))
     s2 = s_room_skill_unreached_total * instance["weights"]["room_nurse_skill"]
     #S3
@@ -215,13 +223,18 @@ function get_violations_scores(instance_path::String, solution_path::String)
 
     s_total = sum([s1, s2, s3, s4, s5, s6])
 
-    println("Objective: ", s_total)
-    @printf "\tS1 (age groups)      %7d (%5d x %5d)\n" s1 s_room_delta_age_total instance["weights"]["room_mixed_age"]
-    @printf "\tS2 (skill level)     %7d (%5d x %5d)\n" s2 s_room_skill_unreached_total instance["weights"]["room_nurse_skill"]
-    @printf "\tS3 (continuity)      %7d (%5d x %5d)\n" s3 s_patient_continuity_total instance["weights"]["continuity_of_care"]
-    @printf "\tS4 (nurse workload)  %7d (%5d x %5d)\n" s4 s_nurse_overtime_total instance["weights"]["nurse_eccessive_workload"]
-    @printf "\tS5 (admission delay) %7d (%5d x %5d)\n" s5 s_admission_delay_total instance["weights"]["patient_delay"]
-    @printf "\tS6 (unscheduled)     %7d (%5d x %5d)\n" s6 s_unscheduled_total instance["weights"]["unscheduled_optional"]
+    # Modifier ici pour avoir les scores de sauvegarder pour comparer facilement
+    open(replace(solution_path, ".json" => "") * "_score.txt", "w") do f
+        println(f, "Objective: ", s_total)
+        @printf f "\tS1 (age groups)      %7d (%5d x %5d)\n" s1 s_room_delta_age_total instance["weights"]["room_mixed_age"]
+        @printf f "\tS2 (skill level)     %7d (%5d x %5d)\n" s2 s_room_skill_unreached_total instance["weights"]["room_nurse_skill"]
+        @printf f "\tS3 (continuity)      %7d (%5d x %5d)\n" s3 s_patient_continuity_total instance["weights"]["continuity_of_care"]
+        @printf f "\tS4 (nurse workload)  %7d (%5d x %5d)\n" s4 s_nurse_overtime_total instance["weights"]["nurse_eccessive_workload"]
+        @printf f "\tS5 (admission delay) %7d (%5d x %5d)\n" s5 s_admission_delay_total instance["weights"]["patient_delay"]
+        @printf f "\tS6 (unscheduled)     %7d (%5d x %5d)\n" s6 s_unscheduled_total instance["weights"]["unscheduled_optional"]
+    end
 
-    return [e_total, s_total]
+    # Modifier pour avoir le detail de chaque soft
+    #return [e_total, s_total]
+    return e_total, s_total, s1, s2, s3, s4, s5, s6
 end
