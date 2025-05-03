@@ -1,4 +1,4 @@
-using Printf
+using Printf, JSON3
 
 function get_violations_scores(instance_path::String, solution_path::String)
     instance = JSON3.read(instance_path)
@@ -156,24 +156,26 @@ function get_violations_scores(instance_path::String, solution_path::String)
         e_patient_admission_day_incorrect_n * 10000,
         e_room_invalid_nurse_n
     ])
-    println("Violations: ", e_total)
-    if e_patient_mandatory_n != 0
-        println("\tMandatory patients not scheduled: ", e_patient_mandatory_n)
-    end
-    if e_patient_invalid_room_n != 0
-        println("\tPatients with invalid room: ", e_patient_invalid_room_n)
-    end
-    if e_room_excess_capacity_n != 0
-        println("\tRooms exceeding capacity: ", e_room_excess_capacity_n)
-    end
-    if e_room_gender_mix_n != 0
-        println("\tRooms with mixed gender: ", e_room_gender_mix_n)
-    end
-    if e_patient_admission_day_incorrect_n != 0
-        println("\tPatients with invalid admission day: ", e_patient_admission_day_incorrect_n)
-    end
-    if e_room_invalid_nurse_n != 0
-        println("\tRooms with invalid nurses: ", e_room_invalid_nurse_n)
+    open(replace(solution_path, ".json" => "") * "_score.txt", "w") do f
+        println(f, "Violations: ", e_total)
+        if e_patient_mandatory_n != 0
+            println(f, "\tMandatory patients not scheduled: ", e_patient_mandatory_n)
+        end
+        if e_patient_invalid_room_n != 0
+            println(f, "\tPatients with invalid room: ", e_patient_invalid_room_n)
+        end
+        if e_room_excess_capacity_n != 0
+            println(f, "\tRooms exceeding capacity: ", e_room_excess_capacity_n)
+        end
+        if e_room_gender_mix_n != 0
+            println(f, "\tRooms with mixed gender: ", e_room_gender_mix_n)
+        end
+        if e_patient_admission_day_incorrect_n != 0
+            println(f, "\tPatients with invalid admission day: ", e_patient_admission_day_incorrect_n)
+        end
+        if e_room_invalid_nurse_n != 0
+            println(f, "\tRooms with invalid nurses: ", e_room_invalid_nurse_n)
+        end
     end
 
     # SOFT CONSTRAINTS
@@ -224,7 +226,7 @@ function get_violations_scores(instance_path::String, solution_path::String)
     s_total = sum([s1, s2, s3, s4, s5, s6])
 
     # Modifier ici pour avoir les scores de sauvegarder pour comparer facilement
-    open(replace(solution_path, ".json" => "") * "_score.txt", "w") do f
+    open(replace(solution_path, ".json" => "") * "_score.txt", "a") do f
         println(f, "Objective: ", s_total)
         @printf f "\tS1 (age groups)      %7d (%5d x %5d)\n" s1 s_room_delta_age_total instance["weights"]["room_mixed_age"]
         @printf f "\tS2 (skill level)     %7d (%5d x %5d)\n" s2 s_room_skill_unreached_total instance["weights"]["room_nurse_skill"]

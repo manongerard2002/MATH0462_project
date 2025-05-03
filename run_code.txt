@@ -1,0 +1,5 @@
+To run the code you simply need to do:
+julia launch.jl (or julia> include("launch.jl"))
+
+This launch file launches the MILP and heuristics for all the 20 instances.
+If you want to execute only some specific instances you should simply give them as argument to either run_MILP or run_heuristics

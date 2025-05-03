@@ -1,0 +1,11 @@
+name = "MATH0462_project"
+
+[deps]
+Combinatorics = "861a8166-3701-5b0c-9a16-15d98fcdc6aa"
+DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+FunctionWrappers = "069b7b12-0de2-55c6-9aab-29f3d0a68a2e"
+Gurobi = "2e9cd046-0924-5485-92f1-d5272153d98b"
+JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+JuMP = "4076af6c-e467-56ae-b986-b466b2749572"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
