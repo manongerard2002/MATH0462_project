@@ -10,10 +10,8 @@ MINUTE = 10
 SOFT_TIMEOUT = (MINUTE - 1) * 60
 HARD_TIMEOUT = (MINUTE - 1) * 60 + 30
 
-nMaxSolutions = 5
-
 global stats = Vector{Dict}()
-global manager = LSManager(nMaxSolutions, HARD_TIMEOUT)
+global manager = LSManager(HARD_TIMEOUT)
 
 function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Union{Int,Nothing}=nothing;
     with_callback::Bool=true, with_start_solution=false, nurse_constraints=true,
@@ -414,7 +412,7 @@ function run_MILP(instances)
         instance_path = joinpath(project_root, instance_directory, instance_name)
         solution_name = @sprintf("sol_%s", instance_name)
 
-        solution_directory = joinpath(project_root, solution_folder, "MILP") # "hard_only")
+        solution_directory = joinpath(project_root, solution_folder, "MILP") #, "hard_only")
         mkpath(solution_directory)
         solution_path = joinpath(solution_directory, solution_name)
 
@@ -432,7 +430,7 @@ function run_heuristics(instances)
     for instance in instances
         println("Heuristics for instance $instance")
         global stats = Vector{Dict}()
-        global manager = LSManager(nMaxSolutions, HARD_TIMEOUT)
+        global manager = LSManager(HARD_TIMEOUT)
 
         instance_name = @sprintf("%s%02d.json", instance_prefix, instance)
         instance_path = joinpath(project_root, instance_directory, instance_name)
@@ -460,13 +458,13 @@ function run_heuristics(instances)
                 break
             end
         end
-        try
-            solution = getBestSolution(manager)
+        solution = getBestSolution(manager)
+        if isnothing(solution)
+            println("No solution were found in $MINUTE minutes")
+        else
             writeSolution!(solution, solution_path)
             printStats(solution)
             get_violations_scores(instance_path, solution_path)
-        catch e
-            println("No solution were found in $MINUTE minutes")
         end
     end
 end

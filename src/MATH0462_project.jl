@@ -13,8 +13,7 @@ export Heuristic_first_available
 include("local_search/LocalSearchUtils.jl")
 using .LocalSearchUtils
 export run_until_convergence, LSObjective, LSOrdering, randomOrdering
-export LSManager, LSManagerListener, getNewSolution!, addSolution!, createListener!, addWaitingFeasibleSolution!, getWaitingFeasibleSolution!, getBestSolution
-
+export LSManager, getNewSolution!, addSolution!, addWaitingFeasibleSolution!, getWaitingFeasibleSolution!, getBestSolution
 
 include("UnschedulePatient.jl")
 export UnschedulePatient
@@ -27,16 +26,3 @@ include("validator.jl")
 export get_violations_scores
 
 end
-
-
-#= 
-include("local_search/LNSNurseRoom.jl")
-include("local_search/LNSNurseDay.jl")
-include("local_search/LNSPatientRoom.jl")
-include("local_search/StupidGreedy.jl")
-include("local_search/GreedyPatient.jl")
-include("local_search/RandomInit.jl")
-include("local_search/UnschedulePatient.jl")
-export LNSNurseRoom, LNSNurseDay, LNSNurses, StupidGreedy, LNSPatientRoom, GreedyPatient, Patient2OPT, RandomInit, UnschedulePatient
-
-end =#

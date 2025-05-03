@@ -3,32 +3,32 @@
         {
             "id": "p000",
             "admission_day": 13,
-            "room": "r13"
+            "room": "r05"
         },
         {
             "id": "p001",
-            "admission_day": 8,
-            "room": "r00"
+            "admission_day": 3,
+            "room": "r10"
         },
         {
             "id": "p002",
             "admission_day": 3,
-            "room": "r08"
+            "room": "r06"
         },
         {
             "id": "p003",
-            "admission_day": 2,
-            "room": "r01"
+            "admission_day": 3,
+            "room": "r05"
         },
         {
             "id": "p004",
-            "admission_day": 2,
-            "room": "r11"
+            "admission_day": 13,
+            "room": "r08"
         },
         {
             "id": "p005",
-            "admission_day": 2,
-            "room": "r05"
+            "admission_day": 3,
+            "room": "r09"
         },
         {
             "id": "p006",
@@ -40,8 +40,8 @@
         },
         {
             "id": "p008",
-            "admission_day": 9,
-            "room": "r13"
+            "admission_day": 7,
+            "room": "r00"
         },
         {
             "id": "p009",
@@ -54,27 +54,27 @@
         {
             "id": "p011",
             "admission_day": 3,
-            "room": "r01"
+            "room": "r08"
         },
         {
             "id": "p012",
-            "admission_day": 2,
-            "room": "r03"
+            "admission_day": 7,
+            "room": "r10"
         },
         {
             "id": "p013",
-            "admission_day": 12,
-            "room": "r00"
+            "admission_day": 11,
+            "room": "r13"
         },
         {
             "id": "p014",
-            "admission_day": 1,
-            "room": "r07"
+            "admission_day": 4,
+            "room": "r05"
         },
         {
             "id": "p015",
-            "admission_day": 0,
-            "room": "r11"
+            "admission_day": 6,
+            "room": "r08"
         },
         {
             "id": "p016",
@@ -86,23 +86,23 @@
         },
         {
             "id": "p018",
+            "admission_day": 0,
+            "room": "r04"
+        },
+        {
+            "id": "p019",
             "admission_day": 4,
             "room": "r09"
         },
         {
-            "id": "p019",
-            "admission_day": 5,
-            "room": "r10"
-        },
-        {
             "id": "p020",
-            "admission_day": 1,
+            "admission_day": 3,
             "room": "r12"
         },
         {
             "id": "p021",
-            "admission_day": 10,
-            "room": "r08"
+            "admission_day": 13,
+            "room": "r09"
         },
         {
             "id": "p022",
@@ -110,18 +110,18 @@
         },
         {
             "id": "p023",
-            "admission_day": 1,
-            "room": "r01"
+            "admission_day": 5,
+            "room": "r06"
         },
         {
             "id": "p024",
             "admission_day": 2,
-            "room": "r02"
+            "room": "r10"
         },
         {
             "id": "p025",
-            "admission_day": 13,
-            "room": "r00"
+            "admission_day": 3,
+            "room": "r06"
         },
         {
             "id": "p026",
@@ -129,13 +129,13 @@
         },
         {
             "id": "p027",
-            "admission_day": 1,
-            "room": "r11"
+            "admission_day": 2,
+            "room": "r03"
         },
         {
             "id": "p028",
-            "admission_day": 10,
-            "room": "r14"
+            "admission_day": 8,
+            "room": "r04"
         },
         {
             "id": "p029",
@@ -144,7 +144,7 @@
         {
             "id": "p030",
             "admission_day": 13,
-            "room": "r11"
+            "room": "r07"
         },
         {
             "id": "p031",
@@ -152,13 +152,13 @@
         },
         {
             "id": "p032",
-            "admission_day": 6,
-            "room": "r14"
+            "admission_day": 4,
+            "room": "r01"
         },
         {
             "id": "p033",
             "admission_day": 13,
-            "room": "r07"
+            "room": "r00"
         },
         {
             "id": "p034",
@@ -170,8 +170,8 @@
         },
         {
             "id": "p036",
-            "admission_day": 13,
-            "room": "r05"
+            "admission_day": 10,
+            "room": "r01"
         },
         {
             "id": "p037",
@@ -179,8 +179,8 @@
         },
         {
             "id": "p038",
-            "admission_day": 9,
-            "room": "r13"
+            "admission_day": 1,
+            "room": "r06"
         },
         {
             "id": "p039",
@@ -188,8 +188,8 @@
         },
         {
             "id": "p040",
-            "admission_day": 4,
-            "room": "r07"
+            "admission_day": 5,
+            "room": "r06"
         },
         {
             "id": "p041",
@@ -198,22 +198,22 @@
         {
             "id": "p042",
             "admission_day": 13,
-            "room": "r06"
+            "room": "r03"
         },
         {
             "id": "p043",
-            "admission_day": 7,
-            "room": "r09"
+            "admission_day": 6,
+            "room": "r13"
         },
         {
             "id": "p044",
-            "admission_day": 12,
-            "room": "r06"
+            "admission_day": 3,
+            "room": "r03"
         },
         {
             "id": "p045",
-            "admission_day": 5,
-            "room": "r00"
+            "admission_day": 4,
+            "room": "r13"
         },
         {
             "id": "p046",
@@ -221,7 +221,7 @@
         },
         {
             "id": "p047",
-            "admission_day": 0,
+            "admission_day": 1,
             "room": "r10"
         },
         {
@@ -231,12 +231,12 @@
         {
             "id": "p049",
             "admission_day": 8,
-            "room": "r08"
+            "room": "r13"
         },
         {
             "id": "p050",
             "admission_day": 13,
-            "room": "r14"
+            "room": "r04"
         },
         {
             "id": "p051",
@@ -246,32 +246,32 @@
         {
             "id": "p052",
             "admission_day": 13,
-            "room": "r09"
+            "room": "r04"
         },
         {
             "id": "p053",
-            "admission_day": 4,
+            "admission_day": 7,
             "room": "r12"
         },
         {
             "id": "p054",
-            "admission_day": 8,
-            "room": "r00"
-        },
-        {
-            "id": "p055",
-            "admission_day": 9,
-            "room": "r12"
-        },
-        {
-            "id": "p056",
             "admission_day": 2,
             "room": "r04"
         },
         {
+            "id": "p055",
+            "admission_day": 7,
+            "room": "r10"
+        },
+        {
+            "id": "p056",
+            "admission_day": 12,
+            "room": "r11"
+        },
+        {
             "id": "p057",
-            "admission_day": 11,
-            "room": "r03"
+            "admission_day": 9,
+            "room": "r12"
         },
         {
             "id": "p058",
@@ -284,7 +284,7 @@
         {
             "id": "p060",
             "admission_day": 2,
-            "room": "r09"
+            "room": "r11"
         },
         {
             "id": "p061",
@@ -292,23 +292,23 @@
         },
         {
             "id": "p062",
-            "admission_day": 3,
-            "room": "r03"
+            "admission_day": 2,
+            "room": "r00"
         },
         {
             "id": "p063",
-            "admission_day": 5,
-            "room": "r06"
+            "admission_day": 4,
+            "room": "r12"
         },
         {
             "id": "p064",
-            "admission_day": 6,
-            "room": "r03"
+            "admission_day": 7,
+            "room": "r08"
         },
         {
             "id": "p065",
             "admission_day": 3,
-            "room": "r06"
+            "room": "r02"
         },
         {
             "id": "p066",
@@ -316,23 +316,23 @@
         },
         {
             "id": "p067",
-            "admission_day": 3,
-            "room": "r13"
+            "admission_day": 10,
+            "room": "r05"
         },
         {
             "id": "p068",
-            "admission_day": 3,
+            "admission_day": 5,
             "room": "r05"
         },
         {
             "id": "p069",
-            "admission_day": 5,
+            "admission_day": 2,
             "room": "r04"
         },
         {
             "id": "p070",
-            "admission_day": 8,
-            "room": "r11"
+            "admission_day": 13,
+            "room": "r14"
         },
         {
             "id": "p071",
@@ -340,13 +340,13 @@
         },
         {
             "id": "p072",
-            "admission_day": 9,
-            "room": "r01"
+            "admission_day": 12,
+            "room": "r06"
         },
         {
             "id": "p073",
-            "admission_day": 4,
-            "room": "r04"
+            "admission_day": 10,
+            "room": "r01"
         },
         {
             "id": "p074",
@@ -354,13 +354,13 @@
         },
         {
             "id": "p075",
-            "admission_day": 4,
-            "room": "r03"
+            "admission_day": 11,
+            "room": "r01"
         },
         {
             "id": "p076",
-            "admission_day": 6,
-            "room": "r13"
+            "admission_day": 3,
+            "room": "r05"
         },
         {
             "id": "p077",
@@ -368,13 +368,13 @@
         },
         {
             "id": "p078",
-            "admission_day": 10,
-            "room": "r01"
+            "admission_day": 8,
+            "room": "r04"
         },
         {
             "id": "p079",
             "admission_day": 2,
-            "room": "r06"
+            "room": "r02"
         },
         {
             "id": "p080",
@@ -383,11 +383,11 @@
         {
             "id": "p081",
             "admission_day": 3,
-            "room": "r14"
+            "room": "r01"
         },
         {
             "id": "p082",
-            "admission_day": 13,
+            "admission_day": 11,
             "room": "r10"
         },
         {
@@ -404,18 +404,18 @@
         },
         {
             "id": "p086",
-            "admission_day": 8,
-            "room": "r04"
+            "admission_day": 7,
+            "room": "r11"
         },
         {
             "id": "p087",
-            "admission_day": 7,
+            "admission_day": 4,
             "room": "r07"
         },
         {
             "id": "p088",
             "admission_day": 13,
-            "room": "r03"
+            "room": "r02"
         },
         {
             "id": "p089",
@@ -433,17 +433,17 @@
         {
             "id": "p092",
             "admission_day": 6,
-            "room": "r02"
+            "room": "r07"
         },
         {
             "id": "p093",
-            "admission_day": 9,
-            "room": "r11"
+            "admission_day": 13,
+            "room": "r10"
         },
         {
             "id": "p094",
             "admission_day": 10,
-            "room": "r05"
+            "room": "r13"
         },
         {
             "id": "p095",
@@ -461,12 +461,12 @@
         {
             "id": "p098",
             "admission_day": 11,
-            "room": "r07"
+            "room": "r10"
         },
         {
             "id": "p099",
             "admission_day": 10,
-            "room": "r14"
+            "room": "r06"
         },
         {
             "id": "p100",
@@ -474,13 +474,13 @@
         },
         {
             "id": "p101",
-            "admission_day": 6,
-            "room": "r05"
+            "admission_day": 12,
+            "room": "r06"
         },
         {
             "id": "p102",
-            "admission_day": 13,
-            "room": "r08"
+            "admission_day": 12,
+            "room": "r12"
         },
         {
             "id": "p103",
@@ -489,27 +489,27 @@
         {
             "id": "p104",
             "admission_day": 13,
-            "room": "r08"
+            "room": "r14"
         },
         {
             "id": "p105",
             "admission_day": 13,
-            "room": "r10"
+            "room": "r11"
         },
         {
             "id": "p106",
-            "admission_day": 13,
-            "room": "r06"
+            "admission_day": 9,
+            "room": "r08"
         },
         {
             "id": "p107",
             "admission_day": 8,
-            "room": "r10"
+            "room": "r06"
         },
         {
             "id": "p108",
-            "admission_day": 13,
-            "room": "r04"
+            "admission_day": 7,
+            "room": "r11"
         },
         {
             "id": "p109",
@@ -517,8 +517,8 @@
         },
         {
             "id": "p110",
-            "admission_day": 13,
-            "room": "r05"
+            "admission_day": 9,
+            "room": "r10"
         },
         {
             "id": "p111",
@@ -526,8 +526,8 @@
         },
         {
             "id": "p112",
-            "admission_day": 10,
-            "room": "r12"
+            "admission_day": 9,
+            "room": "r02"
         },
         {
             "id": "p113",
@@ -535,23 +535,23 @@
         },
         {
             "id": "p114",
-            "admission_day": 9,
-            "room": "r09"
+            "admission_day": 10,
+            "room": "r04"
         },
         {
             "id": "p115",
-            "admission_day": 9,
-            "room": "r10"
+            "admission_day": 10,
+            "room": "r07"
         },
         {
             "id": "p116",
             "admission_day": 13,
-            "room": "r11"
+            "room": "r09"
         },
         {
             "id": "p117",
             "admission_day": 13,
-            "room": "r13"
+            "room": "r01"
         },
         {
             "id": "p118",
@@ -563,18 +563,18 @@
         },
         {
             "id": "p120",
-            "admission_day": 9,
-            "room": "r06"
+            "admission_day": 8,
+            "room": "r04"
         },
         {
             "id": "p121",
             "admission_day": 13,
-            "room": "r04"
+            "room": "r05"
         },
         {
             "id": "p122",
             "admission_day": 13,
-            "room": "r11"
+            "room": "r07"
         },
         {
             "id": "p123",
@@ -592,7 +592,7 @@
         {
             "id": "p126",
             "admission_day": 12,
-            "room": "r09"
+            "room": "r13"
         },
         {
             "id": "p127",
@@ -605,7 +605,7 @@
         {
             "id": "p129",
             "admission_day": 13,
-            "room": "r08"
+            "room": "r05"
         },
         {
             "id": "p130",
@@ -614,7 +614,7 @@
         {
             "id": "p131",
             "admission_day": 13,
-            "room": "r10"
+            "room": "r05"
         },
         {
             "id": "p132",
@@ -623,7 +623,7 @@
         {
             "id": "p133",
             "admission_day": 8,
-            "room": "r03"
+            "room": "r08"
         },
         {
             "id": "p134",
@@ -635,23 +635,23 @@
         },
         {
             "id": "p136",
-            "admission_day": 5,
-            "room": "r06"
+            "admission_day": 6,
+            "room": "r07"
         },
         {
             "id": "p137",
-            "admission_day": 13,
-            "room": "r01"
+            "admission_day": 11,
+            "room": "r04"
         },
         {
             "id": "p138",
-            "admission_day": 7,
-            "room": "r08"
+            "admission_day": 11,
+            "room": "r06"
         },
         {
             "id": "p139",
             "admission_day": 13,
-            "room": "r06"
+            "room": "r08"
         },
         {
             "id": "p140",
@@ -659,23 +659,23 @@
         },
         {
             "id": "p141",
-            "admission_day": 9,
+            "admission_day": 10,
             "room": "r05"
         },
         {
             "id": "p142",
             "admission_day": 13,
-            "room": "r05"
+            "room": "r01"
         },
         {
             "id": "p143",
             "admission_day": 11,
-            "room": "r07"
+            "room": "r03"
         },
         {
             "id": "p144",
             "admission_day": 7,
-            "room": "r02"
+            "room": "r11"
         },
         {
             "id": "p145",
@@ -692,12 +692,12 @@
         {
             "id": "p148",
             "admission_day": 13,
-            "room": "r05"
+            "room": "r10"
         },
         {
             "id": "p149",
             "admission_day": 7,
-            "room": "r08"
+            "room": "r01"
         },
         {
             "id": "p150",
@@ -721,7 +721,7 @@
         },
         {
             "id": "p155",
-            "admission_day": 7,
+            "admission_day": 13,
             "room": "r13"
         },
         {
@@ -731,7 +731,7 @@
         {
             "id": "p157",
             "admission_day": 13,
-            "room": "r13"
+            "room": "r12"
         },
         {
             "id": "p158",
@@ -768,17 +768,17 @@
         {
             "id": "p166",
             "admission_day": 11,
-            "room": "r01"
+            "room": "r04"
         },
         {
             "id": "p167",
-            "admission_day": 11,
+            "admission_day": 7,
             "room": "r02"
         },
         {
             "id": "p168",
             "admission_day": 13,
-            "room": "r04"
+            "room": "r08"
         },
         {
             "id": "p169",
@@ -787,7 +787,7 @@
         {
             "id": "p170",
             "admission_day": 11,
-            "room": "r07"
+            "room": "r00"
         },
         {
             "id": "p171",
@@ -804,7 +804,7 @@
         {
             "id": "p174",
             "admission_day": 7,
-            "room": "r04"
+            "room": "r10"
         },
         {
             "id": "p175",
@@ -817,7 +817,7 @@
         {
             "id": "p177",
             "admission_day": 10,
-            "room": "r11"
+            "room": "r03"
         },
         {
             "id": "p178",
@@ -830,7 +830,7 @@
         {
             "id": "p180",
             "admission_day": 11,
-            "room": "r08"
+            "room": "r05"
         },
         {
             "id": "p181",
@@ -891,24 +891,24 @@
             "id": "n005",
             "assignments": [
                 {
-                    "day": 9,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 9
                 }
             ]
         },
@@ -951,24 +951,24 @@
             "id": "n013",
             "assignments": [
                 {
-                    "day": 6,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 6
                 }
             ]
         },
@@ -1011,24 +1011,24 @@
             "id": "n021",
             "assignments": [
                 {
-                    "day": 13,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 13
                 }
             ]
         },
@@ -1036,24 +1036,24 @@
             "id": "n022",
             "assignments": [
                 {
-                    "day": 3,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 3
                 }
             ]
         },
@@ -1066,44 +1066,44 @@
             "id": "n024",
             "assignments": [
                 {
-                    "day": 0,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 0
                 },
                 {
-                    "day": 4,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 4
                 }
             ]
         },
@@ -1111,44 +1111,44 @@
             "id": "n025",
             "assignments": [
                 {
-                    "day": 8,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 8
                 },
                 {
-                    "day": 11,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 11
                 }
             ]
         },
@@ -1156,24 +1156,24 @@
             "id": "n026",
             "assignments": [
                 {
-                    "day": 10,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 10
                 }
             ]
         },
@@ -1181,44 +1181,44 @@
             "id": "n027",
             "assignments": [
                 {
-                    "day": 5,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 5
                 },
                 {
-                    "day": 12,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 12
                 }
             ]
         },
@@ -1226,24 +1226,24 @@
             "id": "n028",
             "assignments": [
                 {
-                    "day": 2,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 2
                 }
             ]
         },
@@ -1256,24 +1256,24 @@
             "id": "n030",
             "assignments": [
                 {
-                    "day": 1,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 1
                 }
             ]
         },
@@ -1286,24 +1286,24 @@
             "id": "n032",
             "assignments": [
                 {
-                    "day": 7,
                     "rooms": [
-                        "r00",
-                        "r01",
-                        "r02",
-                        "r03",
                         "r04",
-                        "r05",
-                        "r06",
-                        "r07",
-                        "r08",
-                        "r09",
-                        "r10",
                         "r11",
-                        "r12",
+                        "r07",
+                        "r00",
+                        "r05",
+                        "r10",
+                        "r08",
                         "r13",
-                        "r14"
-                    ]
+                        "r02",
+                        "r06",
+                        "r03",
+                        "r12",
+                        "r14",
+                        "r01",
+                        "r09"
+                    ],
+                    "day": 7
                 }
             ]
         }

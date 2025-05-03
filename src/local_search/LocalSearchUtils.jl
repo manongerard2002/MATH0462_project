@@ -52,73 +52,23 @@ end
 
 export LSOrdering, randomOrdering
 
-struct LSManagerListener
-    newSolutions::Vector{Model}
-    lock::ReentrantLock
-
-    function LSManagerListener()
-        new(Vector{Model}(), ReentrantLock())
-    end
-end
-export LSManagerListener
-
-function getNewSolution!(listener::LSManagerListener)
-    lock(listener.lock)
-    try
-        if length(listener.newSolutions) == 0
-            return nothing
-        end
-        return pop!(listener.newSolutions)
-    finally
-        unlock(listener.lock)
-    end
-end
-export getNewSolution!
-
-struct LSManager
-    bestSolutions::Vector{Model}
+mutable struct LSManager
+    bestSolution::Union{Nothing, Model}
     waitingFeasibleSolutions::Vector{Model}
     lock::ReentrantLock
-    nMaxSolutions::Int
-    listeners::Vector{LSManagerListener}
     startTime::Float64
     limitTime::Float64
 
-    function LSManager(nMaxSolutions::Int, limitTime)
-        new(Vector{Model}(), Vector{Model}(), ReentrantLock(), nMaxSolutions, Vector{LSManagerListener}(), time(), limitTime)
+    function LSManager(limitTime)
+        new(nothing, Vector{Model}(), ReentrantLock(), time(), limitTime)
     end
 end
 export LSManager
 
-function createListener!(manager::LSManager)
-    listener = LSManagerListener()
+function addWaitingFeasibleSolution!(manager::LSManager, m::Model)
     lock(manager.lock)
     try
-        push!(manager.listeners, listener)
-    finally
-        unlock(manager.lock)
-    end
-    return listener
-end
-export createListener!
-
-function addWaitingFeasibleSolution!(manager::LSManager, m::Model, sorted::Bool=true)
-    lock(manager.lock)
-    try
-        #= println("----------------------------------------------------------\n")
-        println(@sprintf("New MIP solution: %i (%.2f s)", m.s_total.value, time() - manager.startTime))
-        printStats(m)
-        flush(stdout) =#
-        if sorted #by default feasible solution are find in a decreasing order by Gurobi
-            push!(manager.waitingFeasibleSolutions, m)
-        else
-            idx = findfirst(x -> m.s_total.value > x.s_total.value, manager.waitingFeasibleSolutions)
-            if isnothing(idx)
-                push!(manager.waitingFeasibleSolutions, m)
-            else
-                insert!(manager.waitingFeasibleSolutions, idx, m)
-            end
-        end
+        push!(manager.waitingFeasibleSolutions, m)
     finally
         unlock(manager.lock)
     end
@@ -141,32 +91,10 @@ export getWaitingFeasibleSolution!
 function addSolution!(manager::LSManager, solution::Model)
     lock(manager.lock)
     try
-        if length(manager.bestSolutions) != 0 && solution.s_total.value >= manager.bestSolutions[end].s_total.value
+        if !isnothing(manager.bestSolution) && solution.s_total.value >= manager.bestSolution.s_total.value
             return
         end
-
-        #= if length(manager.bestSolutions) == 0 || solution.s_total.value < manager.bestSolutions[1].s_total.value
-            println("----------------------------------------------------------")
-            println(@sprintf("New best solution: %i (%.2f s)", solution.s_total.value, time() - manager.startTime))
-            printStats(solution)
-            flush(stdout)
-        end =#
-
-        solution = Model(solution) #ensure copy
-        
-        if length(manager.bestSolutions) == manager.nMaxSolutions
-            pop!(manager.bestSolutions)
-        end
-        push!(manager.bestSolutions, solution)
-        sort!(manager.bestSolutions, by=s -> s.s_total.value)
-        for listener in manager.listeners
-            lock(listener.lock)
-            try
-                push!(listener.newSolutions, solution)
-            finally
-                unlock(listener.lock)
-            end
-        end
+        manager.bestSolution = Model(solution) #ensure copy
     finally
         unlock(manager.lock)
     end
@@ -176,7 +104,7 @@ export addSolution!
 function getBestSolution(manager::LSManager)
     lock(manager.lock)
     try
-        return manager.bestSolutions[1]
+        return manager.bestSolution
     finally
         unlock(manager.lock)
     end

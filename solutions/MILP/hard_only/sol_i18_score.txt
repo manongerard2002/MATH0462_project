@@ -1,3 +1,4 @@
+Violations: 0
 Objective: 63693
 	S1 (age groups)          165 (   33 x     5)
 	S2 (skill level)          13 (   13 x     1)
