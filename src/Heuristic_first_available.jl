@@ -18,7 +18,7 @@ function heuristic_first_available(m)
         end
     end
 
-    # Assign mandatory patient to the first room avalaible during its stay
+    # Assign mandatory patient to the first room available during its stay
     for p in m.mandatory_patients
         patient_assigned = false
         for d in m.patient_release_day[p]:min(m.D, m.patient_due_day[p])
@@ -39,20 +39,19 @@ function heuristic_first_available(m)
 
                     patient_assigned = true
                     update!(m.v_patient_admission_day[p], d)
-                    #println("Patient $p is assigned to Room $r on Day $d for days $stay_days")
                     break
                 end
             end
         end
 
         if !patient_assigned
-            #println("Mandatory patient $p has not been assigned within the scheduling period")
+            # Mandatory patient p has not been assigned within the scheduling period
             println("The heuristic first available was not able to produce a solution without violations")
             return nothing
         end
     end
 
-    # Assign optional patient to the first room avalaible during its stay, if possible
+    # Assign optional patient to the first room available during its stay, if possible
     for p in m.optional_patients
         patient_assigned = false
         for d in m.patient_release_day[p]:m.D
@@ -73,7 +72,6 @@ function heuristic_first_available(m)
 
                     patient_assigned = true
                     update!(m.v_patient_admission_day[p], d)
-                    #println("Patient $p is assigned to Room $r on Day $d for days $stay_days")
                     break
                 end
             end
@@ -81,7 +79,6 @@ function heuristic_first_available(m)
 
         if !patient_assigned
             # Optional patient p has not been assigned within the scheduling period
-            #println("Optional patient $p has not been assigned within the scheduling period")
             update!(m.v_patient_admission_day[p], m.D+1)
         end
     end
@@ -115,7 +112,6 @@ function heuristic_first_available(m)
                 # Assign nurse to room r at day d
                 n_schedule[nurse, r, d] = true
                 update!(m.v_room_nurse[r, d], nurse)
-                #println("Nurse $nurse has been assigned to room $r at day $d")
             end
         else
             for n in nurses_available
@@ -129,7 +125,6 @@ function heuristic_first_available(m)
                         personal_workload += room_workload[r, d]
                         n_schedule[n, r, d] = true
                         update!(m.v_room_nurse[r, d], n)
-                        #println("Nurse $n has been assigned to room $r at day $d")
                     end
                 end
                 nurses_workload[n, d] = personal_workload
@@ -151,7 +146,6 @@ function heuristic_first_available(m)
                         personal_workload += room_workload[r, d]
                         n_schedule[n, r, d] = true
                         update!(m.v_room_nurse[r, d], n)
-                        #println("Nurse $n has been assigned to room $r at day $d")
                     end
                 end
                 nurses_workload[n, d] = personal_workload
@@ -172,7 +166,6 @@ function heuristic_first_available(m)
                     personal_workload += room_workload[r, d]
                     n_schedule[n, r, d] = true
                     update!(m.v_room_nurse[r, d], n)
-                    #println("Nurse $n has been assigned to room $r at day $d")
                 end
                 nurses_workload[n, d] = personal_workload
             end

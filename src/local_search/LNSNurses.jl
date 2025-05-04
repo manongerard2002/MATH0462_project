@@ -62,7 +62,7 @@ function relax_nurses(m; gurobi_env::Gurobi.Env)
     optimize!(jm)
 
     if !(termination_status(jm) == MOI.OPTIMAL || primal_status(jm) == FEASIBLE_POINT)
-        #"LNSNurses model not optimal/feasible (due to time limit)
+        # LNSNurses model not optimal/feasible (due to time limit)
         return false
     end
     if objective_value(jm) >= old_objective
@@ -84,7 +84,6 @@ function relax_nurses(m; gurobi_env::Gurobi.Env)
     new_obj = m.s_total.value
 
     if orig_obj > new_obj
-        #println("LNSNurses: improve ($(orig_obj - new_obj)): $orig_obj -> $new_obj")
         return true
     else
         return false

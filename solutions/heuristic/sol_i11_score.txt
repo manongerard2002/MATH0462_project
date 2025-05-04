@@ -1,0 +1,8 @@
+Violations: 0
+Objective: 1154
+	S1 (age groups)           60 (   60 x     1)
+	S2 (skill level)          19 (   19 x     1)
+	S3 (continuity)          340 (  340 x     1)
+	S4 (nurse workload)       70 (    7 x    10)
+	S5 (admission delay)     665 (  133 x     5)
+	S6 (unscheduled)           0 (    0 x   500)

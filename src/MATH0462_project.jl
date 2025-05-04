@@ -15,9 +15,6 @@ using .LocalSearchUtils
 export run_until_convergence, LSObjective, LSOrdering, randomOrdering
 export LSManager, getNewSolution!, addSolution!, addWaitingFeasibleSolution!, getWaitingFeasibleSolution!, getBestSolution
 
-include("UnschedulePatient.jl")
-export UnschedulePatient
-
 include("local_search/LNSNurses.jl")
 include("local_search/PatientOPT.jl")
 export LNSNurses, PatientOPT

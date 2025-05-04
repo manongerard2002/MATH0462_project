@@ -37,9 +37,6 @@ function exchange_patients(m, p1, p2)
     update!(m.v_patient_room[p2], r1)
 
     if is_improving(m, orig_vio, orig_obj)
-        new_vio = m.e_total.value
-        new_obj = m.s_total.value
-        println("Patient2OPT: improve ($(orig_vio - new_vio), $(orig_obj - new_obj)): $orig_vio -> $new_vio, $orig_obj -> $new_obj")
         return true
     else
         # revert state
@@ -79,9 +76,6 @@ function exchange_patients_n_opt(m, patients...)
     end
 
     if is_improving(m, orig_vio, orig_obj)
-        new_vio = m.e_total.value
-        new_obj = m.s_total.value
-        println("Patient3OPT: improve ($(orig_vio - new_vio), $(orig_obj - new_obj)): $orig_vio -> $new_vio, $orig_obj -> $new_obj")
         return true
     else
         # revert state

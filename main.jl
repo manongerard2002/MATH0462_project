@@ -19,7 +19,7 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
 
     # Create a new JuMP model with Gurobi as the solver
     jm = JuMP.Model(() -> Gurobi.Optimizer(gurobi_env))
-    set_optimizer_attribute(jm, "OutputFlag", 1)
+    set_optimizer_attribute(jm, "OutputFlag", 0)
     if !isnothing(timeLimit)
         set_optimizer_attribute(jm, "TimeLimit", timeLimit)
     end
@@ -404,7 +404,8 @@ solution_folder = "solutions"
 function run_MILP(instances)
     gurobi_env = Gurobi.Env()
     project_root = @__DIR__
-    println(project_root)
+    solution_directory = joinpath(project_root, solution_folder, "MILP") #, "hard_only")
+    mkpath(solution_directory)
     for instance in instances
         println("MILP for instance $instance")
         start_time = time()
@@ -412,8 +413,6 @@ function run_MILP(instances)
         instance_path = joinpath(project_root, instance_directory, instance_name)
         solution_name = @sprintf("sol_%s", instance_name)
 
-        solution_directory = joinpath(project_root, solution_folder, "MILP") #, "hard_only")
-        mkpath(solution_directory)
         solution_path = joinpath(solution_directory, solution_name)
 
         solution = MILP(MATH0462_project.Model(instance_path), gurobi_env, nothing, with_callback=false) # S1=false, S2=false, S3=false, S4=false, S5=false, S6=false)
@@ -427,8 +426,11 @@ end
 function run_heuristics(instances)
     gurobi_env = Gurobi.Env()
     project_root = @__DIR__
+    solution_directory = joinpath(project_root, solution_folder, "heuristic")
+    mkpath(solution_directory)
     for instance in instances
         println("Heuristics for instance $instance")
+        start_time = time()
         global stats = Vector{Dict}()
         global manager = LSManager(HARD_TIMEOUT)
 
@@ -436,8 +438,6 @@ function run_heuristics(instances)
         instance_path = joinpath(project_root, instance_directory, instance_name)
         solution_name = @sprintf("sol_%s", instance_name)
 
-        solution_directory = joinpath(project_root, solution_folder, "heuristic")
-        mkpath(solution_directory)
         solution_path = joinpath(solution_directory, solution_name)
 
         m = MATH0462_project.Model(instance_path)
@@ -463,6 +463,7 @@ function run_heuristics(instances)
             println("No solution were found in $MINUTE minutes")
         else
             writeSolution!(solution, solution_path)
+            println("Execution time = ", time()-start_time)
             printStats(solution)
             get_violations_scores(instance_path, solution_path)
         end
