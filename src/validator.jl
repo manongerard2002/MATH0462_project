@@ -156,6 +156,7 @@ function get_violations_scores(instance_path::String, solution_path::String)
         e_patient_admission_day_incorrect_n * 10000,
         e_room_invalid_nurse_n
     ])
+    # Modifier ici pour avoir les scores de sauvegarder pour comparer facilement
     open(replace(solution_path, ".json" => "") * "_score.txt", "w") do f
         println(f, "Violations: ", e_total)
         if e_patient_mandatory_n != 0
@@ -236,7 +237,5 @@ function get_violations_scores(instance_path::String, solution_path::String)
         @printf f "\tS6 (unscheduled)     %7d (%5d x %5d)\n" s6 s_unscheduled_total instance["weights"]["unscheduled_optional"]
     end
 
-    # Modifier pour avoir le detail de chaque soft
-    #return [e_total, s_total]
-    return e_total, s_total, s1, s2, s3, s4, s5, s6
+    return [e_total, s_total]
 end

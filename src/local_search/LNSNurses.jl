@@ -7,7 +7,7 @@ using JuMP, Gurobi
 using ..LocalSearchUtils
 
 function relax_nurses(m; gurobi_env::Gurobi.Env)
-    # penalty for S2: Minimum skill level
+    # penalty for S2: Minimum skill level: the penalty represents the maximum between 0 and the difference between the patient and nurse skill level
     skill_level_penalty = [0 for _ in 1:m.R, _ in 1:m.D, _ in 1:m.L]
     for r in 1:m.R, d in 1:m.D, k in 1:m.L-1 #-1 since no difference of skill at max skill => no penalty
         skill_level_penalty[r, d, k] = sum(max((p_skill - k) * m.c_room_skill[r, d, p_skill].value, 0) for p_skill in 1:m.L)
@@ -44,12 +44,12 @@ function relax_nurses(m; gurobi_env::Gurobi.Env)
         @constraint(jm, sum(n_schedule[n, r, d] for n in 1:m.N) == 1)
     end
 
-    # S3: Continuity of care
+    # S3: Continuity of care: A nurse is in charge of a patient if they are both assigned to the same room on a day
     for r in 1:m.R, d in 1:m.D, p in m.c_patients_present_in_room[r, d].value, n in 1:m.N
         @constraint(jm, in_charge[p, n] >= n_schedule[n, r, d])
     end
 
-    # S4: Maximum workload
+    # S4: Maximum workload: The workload of a nurse on a day is the sum of the workload required in all the nurse's rooms that day
     for n in 1:m.N, d in 1:m.D
         @constraint(jm, n_excess_workload[n, d] >= sum(n_schedule[n, r, d] * m.c_room_workload[r, d].value for r in 1:m.R) - m.nurse_max_load_on_day[n, d])
     end

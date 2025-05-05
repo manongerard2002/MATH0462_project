@@ -3,3 +3,5 @@ julia launch.jl (or julia> include("launch.jl"))
 
 This launch file launches the MILP and heuristics for all the 20 instances.
 If you want to execute only some specific instances you should simply give them as argument to either run_MILP or run_heuristics
+
+Note: Make sure to have the instances in a folder named competition_instances

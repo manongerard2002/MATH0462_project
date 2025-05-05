@@ -224,7 +224,7 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
         @expression(jm, s3, 0)
     end
 
-    # S4: Maximum workload: The excess workload of a nurse on a day is the sum of the workload required by all the nurse's patients that day
+    # S4: Maximum workload: The workload of a nurse on a day is the sum of the workload required by all the nurse's patients that day
     if S4
         for p in 1:m.P, d in 1:m.D
             @constraint(jm, p_workload[p, d] == sum(indicator[p, d-t+1, t] * m.patient_workload[p][t] for t in 1:min(d, m.patient_length_of_stay[p])))
