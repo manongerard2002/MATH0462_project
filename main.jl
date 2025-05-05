@@ -40,7 +40,6 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
         @variable(jm, r_delta_age[1:m.R, 1:m.D] >= 0, Int) # maximum age group difference in room r on day d
     end
     if S2 || S4
-        # trouver un meilleur nom
         @variable(jm, indicator[p in 1:m.P, d in 1:m.D, 1:min(m.D - d + 1, m.patient_length_of_stay[p])], Bin) # = 1 if patient p is on its t^th day since admission on day d
     end
     if S2 || S3 || S4
@@ -66,12 +65,12 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
     end
 
     # constraints
-    # occupant: gender
+    # Fix the gender of the room in which an occupant is
     for o in 1:m.O, d in 1:min(m.D, m.patient_length_of_stay[m.P+o])
         @constraint(jm, r_gender[m.occupant_room[o], d] == (m.patient_gender[m.P+o] == 2))
     end
 
-    # patient cannot be transferred from one room to another
+    # A patient cannot be transferred from one room to another + link present and room
     for p in 1:m.P
         if !(m.patient_mandatory[p]) # since H4
             @constraint(jm, sum(p_room[p, r] for r in 1:m.R) <= 1)
@@ -85,7 +84,7 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
         end
     end
 
-    # link admission to present
+    # Link admission to present
     for p in 1:m.P
         #@constraint(jm, sum(p_admission[p, d] for d in 1:m.D) <= 1) # useless since H6
         @constraint(jm, p_admission[p, 1] == sum(p_present[p, r, 1] for r in 1:m.R))
@@ -94,7 +93,7 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
         end
     end
 
-    # continuity of presence
+    # Continuity of presence: once a patient is admitted, it is present during its entire length of stay, or until the last day of scheduling if smaller
     for p in 1:m.P, d in 1:m.D
         d_end = min(d + m.patient_length_of_stay[p] - 1, m.D)
         @constraint(jm, (d_end - d + 1) * p_admission[p, d] <= sum(p_present[p, r, i] for r in 1:m.R, i in d:d_end))
@@ -110,34 +109,34 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
             end
         end
 
-        # single nurse to each room, for each day within the scheduling period
+        # Single nurse to each room, for each day within the scheduling period
         for r in 1:m.R, d in 1:m.D
             @constraint(jm, sum(n_schedule[n, r, d] for n in 1:m.N) == 1)
         end
     end
 
-    # H1: No gender mix
+    # H1: No gender mix: a room has gender "B" on a day if at least one patient is a "B", it is not gender "B" if at least one patient is a "A"
     for r in 1:m.R, d in 1:m.D
         @constraint(jm, r_gender[r, d] <= 1 - (sum(p_present[p, r, d] for p in 1:m.P if m.patient_gender[p] == 1) + sum(m.o_present[o, r, d] for o in 1:m.O if m.patient_gender[m.P+o] == 1)) / m.room_capacity[r])
         @constraint(jm, r_gender[r, d] >= (sum(p_present[p, r, d] for p in 1:m.P if m.patient_gender[p] == 2) + sum(m.o_present[o, r, d] for o in 1:m.O if m.patient_gender[m.P+o] == 2)) / m.room_capacity[r])
     end
 
-    # H2: Compatible rooms
+    # H2: Compatible rooms: do not allow invalid rooms
     for p in 1:m.P, r in m.patient_invalid_rooms[p]
         @constraint(jm, p_room[p, r] == 0)
     end
 
-    # H3: Room capacity
+    # H3: Room capacity: the number of patient and occupants in a room is less than its capacity
     for r in 1:m.R, d in 1:m.D
         @constraint(jm, sum(p_present[p, r, d] for p in 1:m.P) + sum(m.o_present[o, r, d] for o in 1:m.O) <= m.room_capacity[r])
     end
 
-    # H4: Mandatory versus optional patients
+    # H4: Mandatory versus optional patients: mandatory patients are forced to have a room
     for p in m.mandatory_patients
         @constraint(jm, sum(p_room[p, r] for r in 1:m.R) == 1)
     end
 
-    # H5: Admission day
+    # H5: Admission day: ensure the admission are after the release day and for mandatory patient, before the due day
     for p in m.mandatory_patients
         @constraint(jm, sum(p_admission[p, d] for d in m.patient_release_day[p]:m.patient_due_day[p]) == 1)
         @constraint(jm, sum(p_admission[p, d] for d in 1:m.patient_release_day[p]-1) == 0)
@@ -148,7 +147,7 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
         @constraint(jm, sum(p_admission[p, d] for d in 1:m.patient_release_day[p]-1) == 0)
     end
 
-    # S1: Age groups
+    # S1: Age groups: compute the difference of age in each room on a day as the difference between the age of the oldest and youngest patient
     if S1
         for r in 1:m.R, d in 1:m.D
             for p in 1:m.P
@@ -191,7 +190,7 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
         end
     end
 
-    # S2: Minimum skill level
+    # S2: Minimum skill level: the penalty represents the maximum between 0 and the difference between the patient and nurse skill level
     if S2
         for p in 1:m.P, d in 1:m.D
             @constraint(jm, p_skill[p, d] == sum(indicator[p, d-t+1, t] * m.patient_skill[p][t] for t in 1:min(d, m.patient_length_of_stay[p])))
@@ -211,26 +210,21 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
         @expression(jm, s2, 0)
     end
 
-    # S3: Continuity of care
+    # S3: Continuity of care: A nurse is in charge of a patient if they are both assigned to the same room on a day
     if S3
         #= # Non-linear formulation:
         for n in 1:m.N, p in 1:m.P+m.O
-            # sum / length of stay ou faire chacun individuellement ?
             @constraint(jm, in_charge[n, p] >= sum(n_schedule[n, r, d] * p_present[p, r, d] for r in 1:m.R, d in 1:m.D) / m.patient_length_of_stay[p])
         end =#
-        # sum / length of stay ou faire chacun individuellement ?
         for n in 1:m.N, p in 1:m.P+m.O
             @constraint(jm, in_charge[n, p] >= sum(patient_and_nurse[n, p, r, d] for r in 1:m.R, d in 1:m.D) / m.patient_length_of_stay[p])
         end
-        #= for n in 1:m.N, p in 1:m.P+m.O, r in 1:m.R, d in 1:m.D
-            @constraint(jm, in_charge[n, p] >= patient_and_nurse[n, p, r, d])
-        end =#
         @expression(jm, s3, m.weight_continuity_of_care * sum(in_charge[n, p] for n in 1:m.N, p in 1:m.P+m.O))
     else
         @expression(jm, s3, 0)
     end
 
-    # S4: Maximum workload
+    # S4: Maximum workload: The excess workload of a nurse on a day is the sum of the workload required by all the nurse's patients that day
     if S4
         for p in 1:m.P, d in 1:m.D
             @constraint(jm, p_workload[p, d] == sum(indicator[p, d-t+1, t] * m.patient_workload[p][t] for t in 1:min(d, m.patient_length_of_stay[p])))
@@ -264,7 +258,7 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
         @expression(jm, s4, 0)
     end
 
-    # S5: Admission delay
+    # S5: Admission delay: it is the difference between the possible day of admission and release
     if S5
         for p in 1:m.P
             @constraint(jm, p_delay[p] >= sum(p_admission[p, d] * d for d in 1:m.D) - m.patient_release_day[p])
@@ -274,7 +268,7 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
         @expression(jm, s5, 0)
     end
 
-    # S6: Unscheduled patients
+    # S6: Unscheduled patients: a patient is not scheduled if it has no admission day
     if S6
         for p in m.optional_patients
             @constraint(jm, unscheduled[p] == 1 - sum(p_admission[p, d] for d in 1:m.D))
@@ -385,8 +379,6 @@ function MILP(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, timeLimit::Unio
 end
 
 function heuristics_local_search!(m::MATH0462_project.Model, gurobi_env::Gurobi.Env, ordering)
-    println("heuristics_local_search")
-
     run_until_convergence(manager.startTime, manager.limitTime, [
         () -> LNSNurses.relax_nurses(m, gurobi_env=gurobi_env),
             () -> PatientOPT.patient_2_opt(manager.startTime, manager.limitTime, m, ordering, until_convergence=true),
